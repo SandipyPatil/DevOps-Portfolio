@@ -38,7 +38,7 @@ Welcome to my DevOps Portfolio! This repository is a showcase of my DevOps skill
 Clone the repository and explore each folder for documentation on specific projects. Instructions, scripts, and configurations are provided to help you set up and run each project on your own infrastructure.
 
 ```bash
-git clone https://github.com/yourusername/DevOps-Portfolio.git
+git clone https://github.com/somjeet2000/DevOps-Portfolio.git
 cd DevOps-Portfolio
 ```
 
