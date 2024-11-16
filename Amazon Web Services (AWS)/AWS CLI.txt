@@ -1,0 +1,21 @@
+AWS CLI: AWS CLI is one of the way to create your resouces (VMs, Storage, VPC, Databases etc.) developed by the Amazon.
+
+Commands:
+1. Install AWS CLI into your local computer using the link: https://awscli.amazonaws.com/AWSCLIV2.msi
+
+2. After the installation, open the Command Prompt in Windows and type "aws version". It will give you some list. Means AWS CLI has been installed properly.
+
+3. Steps to connect your AWS CLI with your AWS account-
+    3.1 Open the AWS console with the IAM user.
+    3.2 Click on "Security credentials"
+    3.3 Scroll down and click on "Create access key"
+    3.4 Follow the steps given there and it will download a CSV file with the details. Save the file into some secret location.
+    3.5 Type "aws configure" in the command prompt.
+    3.6 Provide the "Access Key ID" and "Secret Acess Key". Rest of the option you can keep as default. Once this operation has been completed, Your AWS CLI has been configured with your AWS account.
+
+Commands:
+1. aws s3 ls - List of all S3 buckets in your AWS account.
+
+There is a documentation provided by the AWS to understand the create the commands based on your required requirements/resources.
+
+URL: https://docs.aws.amazon.com/cli/latest/
