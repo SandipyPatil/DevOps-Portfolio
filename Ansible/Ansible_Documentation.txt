@@ -1,0 +1,30 @@
+Configuration Management (Ansible)
+
+Configuration Management will aim to solve the problem of managing the configuration of multiple servers.
+
+Now-a-days, Companies uses thousands of servers and to manage the configuration for those servers, we need a tool that can help the DevOps engineers to automate the configuration using some common scripts.
+
+Let's talk about an example. Suppose a organization has 100 servers, which includes 30 windows servers, 30 Ubuntu servers, 30 RHEL distribution servers and 10 Cent OS servers. If there is some patch update of the these servers, we have to consider the update and do the updates in the servers, because older patches might contains some bugs, vulnerabilities etc.
+
+It will be difficult for a DevOps Engineer to login into the servers and update the patches manually, Hence the concept of Ansible arrives.
+
+Inside configuration management, popular tools are:
+1. Puppet
+2. Chef
+3. Ansible -> Mostly used by Users/DevOps Engineer.
+4. Salt
+
+Why Ansible?
+
+Puppet                          Ansible
+1. Pull mechanism model         1. Push mechanism model
+2. Master-Slave Architecture    2. Agent less model
+                                3. Support of Windows/Linux
+3. Puppet language              4. Simple (YAML)
+
+Disadvantage with Ansible.
+1. Still some issue with the windows server, because the configuration management with windows is not similar to the configuration management with Linux.
+
+2. It is not good as of now with Debugging. Debugging logs are not that much easy to understand by a DevOps Engineer.
+
+3. Need to improve with the Performance.
