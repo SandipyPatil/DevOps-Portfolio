@@ -3,7 +3,6 @@ Configuration Management (Ansible)
 Configuration Management will aim to solve the problem of managing the configuration of multiple servers.
 
 Now-a-days, Companies uses thousands of servers and to manage the configuration for those servers, we need a tool that can help the DevOps engineers to automate the configuration using some common scripts.
-
 Let's talk about an example. Suppose a organization has 100 servers, which includes 30 windows servers, 30 Ubuntu servers, 30 RHEL distribution servers and 10 Cent OS servers. If there is some patch update of the these servers, we have to consider the update and do the updates in the servers, because older patches might contains some bugs, vulnerabilities etc.
 
 It will be difficult for a DevOps Engineer to login into the servers and update the patches manually, Hence the concept of Ansible arrives.
@@ -14,17 +13,106 @@ Inside configuration management, popular tools are:
 3. Ansible -> Mostly used by Users/DevOps Engineer.
 4. Salt
 
-Why Ansible?
+1. What is Ansible?
+Ansible is an open-source IT automation tool that helps automate:
 
+    Configuration management
+    Application deployment
+    Orchestration of tasks
+    IT infrastructure provisioning
+It uses a simple YAML-based language to define tasks, making it easy to learn and use.
+
+2. Why Ansible?
 Puppet                          Ansible
 1. Pull mechanism model         1. Push mechanism model
 2. Master-Slave Architecture    2. Agent less model
                                 3. Support of Windows/Linux
 3. Puppet language              4. Simple (YAML)
 
-Disadvantage with Ansible.
-1. Still some issue with the windows server, because the configuration management with windows is not similar to the configuration management with Linux.
+3. Key Features of Ansible.
+    3.1. Agentless: No need to install agents on managed nodes. Ansible communicates via SSH or WinRM.
+    3.2. Idempotent: Ensures repeated executions produce the same results, preventing unintended changes.
+    3.3. Declarative: You declare the desired state of your systems, and Ansible makes it so.
+    3.4. Extensible: You can write custom modules and plugins in Python.
 
-2. It is not good as of now with Debugging. Debugging logs are not that much easy to understand by a DevOps Engineer.
+4. Disadvantage with Ansible.
+    4.1. Still some issue with the windows server, because the configuration management with windows is not similar to the configuration management with Linux.
+    4.2. It is not good as of now with Debugging. Debugging logs are not that much easy to understand by a DevOps Engineer.
+    4.3. Need to improve with the Performance.
 
-3. Need to improve with the Performance.
+5. Architecture of Ansible.
+    5.1. Control Node: The machine where Ansible is installed (runs commands and playbooks).
+    5.2. Managed Nodes: The machine you want to configure/manage. These can be Linux or Windows.
+    5.3. Inventory: A file that lists managed nodes (hosts) and their details.
+    5.4. Modules: Pre-defined functions Ansible executes on managed nodes (e.g., installing software).
+    5.5. Playbooks: YAML files containing a sequence of tasks to achieve a goal.
+
+6. How does Ansible Work?
+    6.1. Control Node sends instructions (tasks) to Managed Nodes over SSH or WinRM.
+    6.2. Tasks are executed using Modules.
+    6.3. Ansible applies the instructions and ensures the target machines are in the desired state.
+
+7. Installation:
+    7.1 Install Ansible on a Linux system (Control Node).
+    On Debian/Ubuntu:
+        sudo apt update
+        sudo apt install ansible -y
+
+    On CentOS/RHEL:
+        sudo yum install ansible -y
+
+    Check the installation:
+        ansible --version
+
+8. Key Components of Ansible:
+    8.1 Inventory: Defines the hosts(nodes) to manage.
+        8.1.1. Static Inventory: A text file listing servers.
+
+        [webservers]
+        server1 ansible_host=192.168.1.10 ansible_user=ubuntu
+        server2 ansible_host=192.168.1.11 ansible_user=ubuntu
+
+        [dbservers]
+        dbserver1 ansible_host=192.168.1.20 ansible_user=root
+
+        8.1.2. Dynamic Inventory: Scripts or plugins to fetch hosts dynamically (e.g., from cloud providers).
+    
+    8.2. Playbooks: YAML files describing tasks:
+        - name: Install Apache
+          hosts: webservers
+          tasks:
+            - name: Install Apache package
+              apt:
+                name: apache2
+                state: present
+
+    8.3. Modules: Pre-defined units of work (e.g., apt, yum, copy, service):
+        - name: Create a file
+          hosts: all
+          tasks:
+            - name: Create /tmp/hello.txt
+              copy:
+                content: "Hello, Ansible!"
+                dest: /tmp/hello.txt
+
+    8.4. Variables: Used for dynamic values in playbooks.
+        - name: Example with Variables
+          hosts: all
+          vars:
+            package_name: apache2
+        
+          tasks:
+            - name: Install the package
+              apt:
+                name: "{{ package_name }}"
+                state: present
+
+9. Common Use Cases:
+    9.1. Configuration Management: Setting up servers with required software (e.g., web servers, databases).
+    9.2. Application Deployment: Deploying applications consistenly across environments.
+    9.3. Infrastructure as Code (IaC): Automating cloud infrastructure setup.
+    9.4. Orchestration: Coordinating tasks across multiple servers.
+
+
+
+

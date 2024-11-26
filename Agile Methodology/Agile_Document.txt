@@ -1,0 +1,20 @@
+Agile Principles:-
+1. Agile is an iterative, collaborative approach to software development using small, cross-functional teams.
+2. The Agile approach emphasizes flexibility, interactivity, and transparency.
+3. The Agile Manifesto describes the core values of Agile:
+	3.1 Individuals and interactions over processes and tools.
+	3.2 Working software over comprehensive documentation.
+	3.3 Customer collaboration over contract negotiation.
+	3.4 Responding to change over following a plan.
+
+Traditional Waterfall Development
+Requirement -> Design -> Code -> Integration -> Test -> Deploy
+
+Problems with waterfall approach
+1. No provisions for changing requirements.
+2. No idea if it works until the end.
+3. Each step ends when the next begins.
+4. Mistakes found in the later stages are more expensive to fix.
+5. There is usually a long time between software releases.
+6. Teams work separately, unaware of their impact on each other.
+7. The people who know the least about the code are deploying it into production.
