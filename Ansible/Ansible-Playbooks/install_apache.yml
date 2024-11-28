@@ -1,14 +1,19 @@
 - name: Install Apache Web Server
   hosts: webservers
   become: yes
+  vars:
+    package_name: apache2
+    custom_message: "<h1>Hello, Ansible with Variables!</h1>"
   tasks:
     - name: Install Apache package
       apt:
-        name: apache2
+        # Use of variables
+        name: "{{ package_name }}"
         state: present
 
     - name: Deploy a custom web page
       copy:
-        content: "<h1>Welcome to Ansible!</h1>"
+        # Use if variables
+        content: "{{ custom_message }}"
         dest: /var/www/html/index.html
 
