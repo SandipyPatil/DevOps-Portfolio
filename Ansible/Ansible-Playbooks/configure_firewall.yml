@@ -1,0 +1,25 @@
+- name: Configure Firewall
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Allow HTTP traffic
+      ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+
+    - name: Allow SSH traffic
+      ufw:
+        rule: allow
+        port: 22
+        proto: tcp
+
+    - name: Enable the firewall
+      command: ufw enable
+      register: enable_firewall
+      ignore_errors: true  # Avoid playbook failure if the firewall is already enabled
+
+    - name: Display firewall status
+      debug:
+        msg: "{{ enable_firewall.stdout }}"
+

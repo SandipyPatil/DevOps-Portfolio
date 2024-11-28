@@ -1,0 +1,14 @@
+- name: Install Apache Web Server
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install Apache package
+      apt:
+        name: apache2
+        state: present
+
+    - name: Deploy a custom web page
+      copy:
+        content: "<h1>Welcome to Ansible!</h1>"
+        dest: /var/www/html/index.html
+
