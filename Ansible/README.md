@@ -2,13 +2,9 @@
 
 This guide provides step-by-step instructions to install and verify Ansible on an Ubuntu system.
 
----
-
 ## **Prerequisites**
 - An Ubuntu system (18.04, 20.04, or later).
 - Sudo privileges for the user.
-
----
 
 ## **Installation Steps**
 
@@ -19,7 +15,7 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
----
+
 
 ### **Step 2: Install Required Dependencies**
 Install the required software properties package:
@@ -27,7 +23,7 @@ Install the required software properties package:
 sudo apt install software-properties-common -y
 ```
 
----
+
 
 ### **Step 3: Add Ansible PPA**
 Add the official Ansible PPA to your system:
@@ -35,7 +31,7 @@ Add the official Ansible PPA to your system:
 sudo add-apt-repository --yes --update ppa:ansible/ansible
 ```
 
----
+
 
 ### **Step 4: Install Ansible**
 Install Ansible using the APT package manager:
@@ -43,7 +39,7 @@ Install Ansible using the APT package manager:
 sudo apt install ansible -y
 ```
 
----
+
 
 ## **Verification**
 
@@ -83,7 +79,7 @@ ansible [core X.X.X]
    }
    ```
 
----
+
 
 ## **Uninstall Ansible**
 If you need to remove Ansible, use the following command:
@@ -91,10 +87,9 @@ If you need to remove Ansible, use the following command:
 sudo apt remove --purge ansible -y
 ```
 
----
+
 
 ## **References**
 - [Ansible Documentation](https://docs.ansible.com/)
 - [Ansible GitHub Repository](https://github.com/ansible/ansible)
 
----
