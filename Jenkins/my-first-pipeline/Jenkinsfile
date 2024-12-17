@@ -5,8 +5,17 @@ pipeline {
   stages {
     stage('Test') {
       steps {
+        script {
+          // Ensure proper Unix-style paths if required
+          def workspacePath = isWindows() ? env.WORKSPACE.replaceAll('C:', '/c') : env.WORKSPACE
+          echo "Workspace: ${workspacePath}"
+        }
         sh 'node --version'
       }
     }
   }
+}
+
+def isWindows() {
+    return System.getProperty('os.name').toLowerCase().contains('win')
 }
