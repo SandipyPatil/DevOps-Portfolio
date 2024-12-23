@@ -5,11 +5,11 @@ Welcome to my DevOps Portfolio! This repository is a showcase of my DevOps skill
 ## 🔧 Skills and Tools
 
 - **Infrastructure as Code (IaC):** Terraform, CloudFormation
-- **CI/CD Pipelines:** Jenkins, GitHub Actions, GitLab CI/CD
+- **CI/CD Pipelines:** Jenkins
 - **Containerization & Orchestration:** Docker, Kubernetes
 - **Configuration Management:** Ansible
 - **Monitoring & Logging:** Prometheus, Grafana, ELK Stack
-- **Scripting & Automation:** Bash, Python
+- **Scripting & Automation:** Bash
 
 ## 📁 Project Highlights
 
