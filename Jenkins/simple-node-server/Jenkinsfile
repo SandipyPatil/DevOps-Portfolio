@@ -22,7 +22,7 @@ pipeline {
                 cleanWs()
             }
         }
-        stage('Checkout SCM') {
+        stage('Code Checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/somjeet2000/DevOps-Portfolio.git']])
             }
