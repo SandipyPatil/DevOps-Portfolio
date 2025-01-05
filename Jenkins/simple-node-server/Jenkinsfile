@@ -7,7 +7,7 @@ pipeline {
         IMAGE_TAG = 'v1'
 
         // EC2 Instance
-        SSH_KEY = credentials('ssh-key-id')
+        SSH_KEY = 'ssh-key-id'
         REMOTE_HOST = '15.206.127.4'
         REMOTE_USER = 'ubuntu'
     }
@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Deploy to Server') {
             steps {
-                sshagent(['ssh-key-id']) {
+                sshagent([SSH_KEY]) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << EOF
                         echo "Pulling latest Docker image..."
