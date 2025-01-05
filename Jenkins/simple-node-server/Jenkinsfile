@@ -17,6 +17,11 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Checkout SCM') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/somjeet2000/DevOps-Portfolio.git']])
@@ -24,7 +29,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKERHUB_REPO:$IMAGE_TAG -f Jenkins/simple-node-server/Dockerfile'
+                sh 'docker build -t $DOCKERHUB_REPO:$IMAGE_TAG -f Jenkins/simple-node-server/Dockerfile .'
             }
         }
         stage('Push to Docker Hub') {
