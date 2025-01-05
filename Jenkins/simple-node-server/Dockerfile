@@ -8,7 +8,7 @@ COPY Jenkins/simple-node-server/package-lock.json .
 
 RUN npm install
 
-COPY Jenkins/simple-node-server/* .
+COPY Jenkins/simple-node-server/* ./
 
 EXPOSE 5000
 
