@@ -40,16 +40,16 @@ pipeline {
             steps {
                 sshagent([SSH_KEY]) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << EOF
-                        echo "Pulling latest Docker image..."
-                        docker pull $DOCKERHUB_REPO:$IMAGE_TAG
+                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST <<EOF
+                            echo "Pulling latest Docker image..."
+                            docker pull $DOCKERHUB_REPO:$IMAGE_TAG
 
-                        echo "Stopping and removing existing container if it exists..."
-                        docker stop simple-node-server || true
-                        docker rm simple-node-server || true
+                            echo "Stopping and removing existing container if it exists..."
+                            docker stop simple-node-server || true
+                            docker rm simple-node-server || true
 
-                        echo "Running new container..."
-                        docker run -d --name simple-node-server -p 5000:5000 $DOCKERHUB_REPO:$IMAGE_TAG
+                            echo "Running new container..."
+                            docker run -d --name simple-node-server -p 5000:5000 $DOCKERHUB_REPO:$IMAGE_TAG
                         EOF
                     '''
                 }
