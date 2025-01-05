@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKERHUB_REPO:$IMAGE_TAG -f Jenkins/simple-node-server/Dockerfile .'
+                sh 'docker build -t $DOCKERHUB_REPO:$IMAGE_TAG -f Jenkins/simple-node-server/Dockerfile'
             }
         }
         stage('Push to Docker Hub') {
