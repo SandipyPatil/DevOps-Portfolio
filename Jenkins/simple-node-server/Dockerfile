@@ -2,13 +2,13 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package.json .
+COPY Jenkins/simple-node-server/package.json .
 
-COPY package-lock.json .
+COPY Jenkins/simple-node-server/package-lock.json .
 
 RUN npm install
 
-COPY . .
+COPY Jenkins/simple-node-server/* .
 
 EXPOSE 5000
 
