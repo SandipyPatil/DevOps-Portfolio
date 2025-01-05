@@ -50,7 +50,7 @@ pipeline {
 
                             echo \'Running new container...\'
                             docker run -d --name simple-node-server -p 5000:5000 $DOCKERHUB_REPO:$IMAGE_TAG
-                            EOF'''
+                        EOF'''
                 }
             }
         }
