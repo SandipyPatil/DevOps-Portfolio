@@ -1,0 +1,44 @@
+pipeline {
+    agent {
+        docker {
+            image 'node:18-alpine'
+        }
+    }
+
+    environment {
+        // Dockerhub
+        DOCKERHUB_REPO = 'somjeetsrimani/simple-node-server'
+        IMAGE_TAG = 'v1'
+
+        // EC2 Instance
+        SSH_KEY = credentials('ssh-key-id')
+        REMOTE_HOST = '15.206.127.4'
+        REMOTE_USER = 'ubuntu'
+    }
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/somjeet2000/DevOps-Portfolio.git']])
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $DOCKERHUB_REPO:$IMAGE_TAG -f Jenkins/simple-node-server/Dockerfile .'
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                    sh 'docker push $DOCKERHUB_REPO:$IMAGE_TAG' 
+                }
+            }
+        }
+        stage('Deploy to Server') {
+            steps {
+                sh "ssh -i $SSH_KEY $REMOTE_USER@$REMOTE_HOST 'docker run $DOCKERHUB_REPO:$IMAGE_TAG && docker run -d --name simple-node-server -p 5000:5000 $DOCKERHUB_REPO:$IMAGE_TAG'"
+            }
+        }
+    }
+}
