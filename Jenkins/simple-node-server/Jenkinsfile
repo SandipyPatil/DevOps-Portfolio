@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sshagent([SSH_KEY]) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << EOF
+                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << 'EOF'
                         echo "Pulling latest Docker image..."
                         docker pull $DOCKERHUB_REPO:$IMAGE_TAG
 
