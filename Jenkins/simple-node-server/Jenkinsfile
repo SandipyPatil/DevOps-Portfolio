@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sshagent([SSH_KEY]) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST
+                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << EOF
                         echo "Pulling latest Docker image..."
                         docker pull $DOCKERHUB_REPO:$IMAGE_TAG
 
@@ -50,6 +50,7 @@ pipeline {
 
                         echo "Running new container..."
                         docker run -d --name simple-node-server -p 5000:5000 $DOCKERHUB_REPO:$IMAGE_TAG
+                        EOF
                     '''
                 }
             }
